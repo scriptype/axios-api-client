@@ -1,8 +1,6 @@
-function batchInterceptor(instance) {
-  instance.interceptors.request.use(request => {
-    console.log('helo a request');
-    return request;
-  }, error => Promise.reject(error));
+function batchInterceptor(request) {
+  console.log('a request ✨');
+  return request;
 }
 
 export default batchInterceptor;

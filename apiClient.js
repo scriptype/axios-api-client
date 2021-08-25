@@ -1,15 +1,10 @@
 import axios from "axios";
-import batchInterceptor from "./interceptor";
+import batchInterceptor from "./interceptor.js";
 
-const client = () => {
-  const config = {
-    host: "https://europe-west1-quickstart-1573558070219.cloudfunctions.net",
-    baseAPI: "https://europe-west1-quickstart-1573558070219.cloudfunctions.net",
-    headers: {}
-  };
+const createClient = (config) => {
   const instance = axios.create(config);
-  addInterceptor(instance);
+  instance.interceptors.request.use(batchInterceptor, Promise.reject);
   return instance;
 }
 
-export default client;
+export default createClient;
